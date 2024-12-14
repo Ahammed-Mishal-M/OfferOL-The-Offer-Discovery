@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Products</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+  <!-- Navbar -->
+  <nav class="bg-white shadow-lg p-4">
+    <div class="container mx-auto">
+      <h1 class="text-xl font-bold text-gray-700">Your Shop's Products</h1>
+    </div>
+  </nav>
+
+  <!-- Main content -->
+  <div class="container mx-auto mt-8">
+    <div class="flex flex-col">
+      <!-- Check if shop has products -->
+      {% if shop %}
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Loop through each product -->
+          {% for item in shop %}
+          <div class="bg-white rounded-lg shadow-lg p-6">
+            <!-- Product image -->
+            {% if item.productimage %}
+            <img src="{{ item.productimage.url }}" alt="{{ item.productname }}" class="h-48 w-full object-cover rounded-t-lg">
+            {% else %}
+            <p> image not found </p>
+            {% endif %}
+            <div class="mt-4">
+              <h2 class="text-lg font-semibold text-gray-800">{{ item.productname }}</h2>
+              <p class="text-sm text-gray-500 mt-2">Price: <span class="line-through">${{ item.productprice }}</span></p>
+              <p class="text-sm text-green-600">Offer Price: ${{ item.offerprice }}</p>
+              <p class="text-sm text-gray-500">Discount: {{ item.discountvalue }}%</p>
+              <p class="text-sm text-gray-500">Stock: {{ item.stock }}</p>
+            </div>
+            <div class="mt-4">
+              <a href="/editproduct/{{item.id}}/" class="bg-blue-500 text-white mx-2 px-4 py-2 rounded-lg shadow-md hover:bg-blue-600">Edit Product</a>
+              <a id ="del" href="/delproduct/{{item.id}}/" class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600" onclick="return confirmDelete();">Delete Product</a>
+            </div>
+            
+          </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <p class="text-lg text-gray-700">No products available. Please add products to your shop.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white text-center py-4 mt-8">
+    <p>© 2024 ShopOffer Discover. All rights reserved.</p>
+  </footer>
+</body>
+<script>
+    function confirmDelete() {
+        return confirm("Are you sure you want to delete this product?");
+    }
+</script>
+</html>

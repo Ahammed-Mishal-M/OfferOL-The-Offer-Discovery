@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="flex justify-center items-center h-screen">
+        <div class="w-full max-w-lg bg-white shadow-lg rounded-lg p-8">
+            <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Shop Profile</h2>
+            
+            <!-- Shop Image -->
+            <div class="flex justify-center mb-4">
+                <img src="{{ shop.image.url }}" alt="{{ shop.shopname }}'s Image" class="h-40 w-40 rounded-full object-cover">
+            </div>
+
+            <!-- Shop Details -->
+            <div class="space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600 font-medium">Shop Name:</span>
+                    <span class="text-gray-800">{{ shop.shopname }}</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600 font-medium">Shop Owner Name:</span>
+                    <span class="text-gray-800">{{ shop.shopownername }}</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600 font-medium">Email:</span>
+                    <span class="text-gray-800">{{ shop.email }}</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600 font-medium">Phone:</span>
+                    <span class="text-gray-800">{{ shop.phone }}</span>
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600 font-medium">Store ID:</span>
+                    <span class="text-gray-800">{{ shop.storeid }}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-600 font-medium">Shop Location:</span>
+                    <span class="text-gray-800">{{ shop.location }}</span>
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <a href="{% url 'shopeditprofile' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Edit Profile
+                </a>
+            </div>
+            <div class="mt-6 text-center">
+                <a href="/shopdelprofile/{{shop.id}}/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Delete Profile
+                </a>
+            </div>
+        
+        
+        </div>
+    </div>
+</body>
+</html>

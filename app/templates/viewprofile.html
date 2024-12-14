@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <div class="container mx-auto mt-10">
+        <div class="w-full max-w-md mx-auto bg-white rounded-lg shadow-md p-8">
+            <div class="flex justify-center">
+                <!-- User Profile Image -->
+                {% if usr.image %}
+                    <img src="{{ usr.image.url }}" alt="Profile Image" class="w-24 h-24 rounded-full shadow-md">
+                {% else %}
+                    <img src="https://via.placeholder.com/150" alt="Default Profile Image" class="w-24 h-24 rounded-full shadow-md">
+                {% endif %}
+            </div>
+            <div class="text-center mt-4">
+                <h2 class="text-xl font-semibold text-gray-800">{{ usr.name }}</h2>
+                <p class="text-gray-600">{{ usr.email }}</p>
+            </div>
+            <div class="mt-6 space-y-4">
+                <div class="flex items-center justify-between">
+                    <span class="font-medium text-gray-700">Phone:</span>
+                    <span class="text-gray-800">{{ usr.phone }}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium text-gray-700">Gender:</span>
+                    <span class="text-gray-800">{{ usr.get_gender_display }}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                    <span class="font-medium text-gray-700">Age:</span>
+                    <span class="text-gray-800">{{ usr.age }}</span>
+                </div>
+            </div>
+            <div class="mt-6 text-center">
+                <a href="{% url 'editprofile' %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Edit Profile
+                </a>
+            </div>
+            <div class="mt-6 text-center">
+                <a href="/delprofile/{{usr.id}}/" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Delete Profile
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
